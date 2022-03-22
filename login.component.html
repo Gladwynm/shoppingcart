@@ -1,0 +1,63 @@
+
+  <div class="w3l_banner_nav_right">
+    <!-- login -->
+            <div class="w3_login">
+                <h3>Sign In & Sign Up</h3>
+                <div class="w3_login_module">
+                    <div class="module form-module">
+                      <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+                        <div class="tooltip">Click Me</div>
+                      </div>
+                      <div class="form">
+                        <h2>Login to your account</h2>
+                        <h4>{{msg}}</h4>
+                        <form (submit)= "doLogin()" [formGroup]= "loginForm" action="#" method="post">
+                         <div class="form-group">
+                          <input type="text" class="form-control"  name="Username" placeholder="Username" formControlName="Username">
+                          <p class="alert alert-danger" *ngIf= "loginForm.get('Username').errors?.['minlength']" >Enter Minimum 3 Character</p>
+                          <p class="alert alert-danger" *ngIf= "loginForm.get('Username').errors?.['required']&&(loginForm.get('Username').touched || loginForm.get('Username').dirty)">Please Enter Name</p>
+                         </div>
+                         <div>
+                          <input type="password" class="form-control" name="Password" placeholder="Password"  formControlName="Password">
+                          <p class="alert alert-danger" *ngIf= "loginForm.get('Password').errors?.['pattern']" >Enter Numbers Only</p>
+                            
+                         </div>
+                          <input type="submit" value="Login" class="btn btn-primary" [disabled]= "loginForm.invalid">
+                        </form>
+                      </div>
+                      <div class="form">
+                        <h2>Create an account</h2>
+                        <h4>{{msg}}</h4>
+                        <form  (submit)= "doRegister(form)" #form= "ngForm" action="#" method="post">
+                         <div class="form-group" > 
+                           <input type="text" class="form-control" #username="ngModel" name="Username" ngModel placeholder="Username" required minlength="3">
+                           <p class="alert alert-danger" *ngIf= "username.errors?.['required']&&(username.touched || username.dirty)">Please Enter Name</p>
+                           <p class="alert alert-danger" *ngIf= "username.errors?.['minlength']&&(username.touched)"> Enter Minimum 3 Character </p>
+                        </div>
+                        <div class="form-group">
+                          <input type="password" class="form-control" #userpassword="ngModel" name="Password" ngModel pattern="^(0|[1-9][0-9]*)$" placeholder="Password"  >
+                          <p class="alert alert-danger" *ngIf= "userpassword.errors?.['pattern']">
+                           Enter Number Only
+                         </p>
+                        </div>
+                         <div>
+                           <input type="email" class="form-control" name="Email" ngModel email #useremail="ngModel"  placeholder="Email Address" >
+                           <p class="alert alert-danger" *ngIf= "useremail.errors?.['email'] && useremail.dirty && useremail.touched">Enter valid Email</p>
+                         </div>
+                        <div>
+                          <input type="text" class="form-control" #userphoneno="ngModel" name="Phone" ngModel pattern="^(0|[1-9][0-9]*)$" placeholder="Phone Number" >
+                        
+                          <p class="alert alert-danger" *ngIf ="userphoneno.errors?.['pattern']">Enter Phone Number Only</p>
+                        </div>
+                        
+                          <input type="submit" class="btn btn-primary" value="Register" [disabled]= "">
+                        </form>
+                      </div>
+                      <div class="cta"><a href="#">Forgot your password?</a></div>
+                    </div>
+                </div>
+              
+            </div>
+    <!-- //login -->
+            </div>
+            <div class="clearfix"></div>
